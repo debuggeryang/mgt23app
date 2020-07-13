@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+  <!-- Here we decleared three "virtual class"es through virtualType tag.
+  They are almost identital wtih their corresponding classes (in "type" attribute), but with different dependencies in constructor.
+  Specifically:
+    1. UIComponentCollectionFactoryForReporting has a different collections from the original CollectionFactory;
+    2. Consequentially, UIComponentReporting has a different CollectionFactory;
+    3. And UIComponentDataProvider has a different Reporting. -->
+  <virtualType name="UIComponentCollectionFactoryForReporting" type="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+      <arguments>
+          <argument name="collections" xsi:type="array">
+              <item name="bifang_order_grid_data_source" xsi:type="string">BiFang\TutorialAdminUIComponent\Model\ResourceModel\Grid\OrderCollection</item>
+              <item name="bifang_invoice_grid_data_source" xsi:type="string">BiFang\TutorialAdminUIComponent\Model\ResourceModel\Grid\InvoiceCollection</item>
+          </argument>
+      </arguments>
+  </virtualType>
+  <virtualType name="UIComponentReporting" type="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+      <arguments>
+          <argument name="collectionFactory" xsi:type="object">UIComponentCollectionFactoryForReporting</argument>
+      </arguments>
+  </virtualType>
+  <virtualType name="UIComponentDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+      <arguments>
+          <argument name="reporting" xsi:type="object">UIComponentReporting</argument>
+      </arguments>
+  </virtualType>
+</config>

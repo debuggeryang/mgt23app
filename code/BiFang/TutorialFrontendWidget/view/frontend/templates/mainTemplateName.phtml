@@ -1,0 +1,108 @@
+<div class="">
+  <h2>Here are examples of Magento
+    <a target="_blank" href="https://devdocs.magento.com/guides/v2.3/javascript-dev-guide/widgets/jquery-widgets-about.html">
+      jQuery Widgets
+    </a>
+  </h2>
+  <div class="example">
+    <h4>1. Magento Accordion widget</h4>
+
+    <!-- Here we have two ways to achieve mage-init binding.
+    The first one is more "magento" because it uses the 'data-mage-init' attribute from magento.
+    The second one is more "knockoutjs" because it uses the traditional 'data-bind' attribute. -->
+
+      <!-- <div data-mage-init='{ "accordion":{
+        "active": [],
+        "collapsible": true,
+        "openedState": "active",
+        "multipleCollapsible": true
+      }}'> -->
+      <div data-bind='mageInit:{ "accordion":{
+        "active": [],
+        "collapsible": true,
+        "openedState": "active",
+        "multipleCollapsible": true
+      }}'>
+          <div data-role="collapsible" class="card-header">
+              <div data-role="trigger">
+                  The Magento system uses a jQuery JavaScript library to implement client functionality.
+              </div>
+          </div>
+          <div data-role="content">For how to use jQuery Widget, you can read <a href="https://learn.jquery.com/jquery-ui/widget-factory/">five part Widget Factory series</a>.</div>
+          <div data-role="collapsible" class="card-header">
+              <div data-role="trigger">
+                  Magento2 has three ways to instantiate widgets. We instantiate this accordion widget using data-mage-init attributes
+              </div>
+          </div>
+          <div data-role="content">In fact, it’s probably safe to say that both data-mage-init and x-magento-init were designed to work with widgets initially, and it was only later that they were adopted (by the UI Component system, for one) as a way of invoking javascript with server side rendered JSON objects.</div>
+
+      </div>
+  </div>
+
+
+  <div class="example">
+    <h4>2. Magento DropdownDialog widget</h4>
+    <div data-block="bifang-dropdown" class="bifang-dropdown-wrapper">
+        <button type="button" class="action" data-trigger="dropdown-trigger">
+            <span data-bind="i18n: 'Click this button to show the dialog'"></span>
+        </button>
+    </div>
+    <div id="bifang-dropdown-dialog">
+        <div id="bifang-dropdown-content-wrapper">
+             We instantiate this dropdown dialog widget using x-magento-init script tag
+        </div>
+    </div>
+
+    <!-- Remember we did the similar thing to initiate component?
+    The difference is all components are initialised through Magento_Ui/js/core/app,
+    while widget is instantiated by the widget itself, more straight away -->
+    <script type="text/x-magento-init">
+      {
+        "#bifang-dropdown-dialog": {
+          "dropdownDialog": {
+            "appendTo": "[data-block=bifang-dropdown]",
+            "triggerTarget":"[data-trigger=dropdown-trigger]",
+            "timeout": 2000,
+            "closeOnMouseLeave": false,
+            "closeOnEscape": true,
+            "autoOpen": false,
+            "triggerClass": "active",
+            "parentClass": "active",
+            "buttons": []
+          }
+        }
+      }
+    </script>
+  </div>
+
+
+  <div class="example">
+    <h4>3. Magento Modal widget</h4>
+    <button type="button" class="bifang-modal-action" data-trigger="modal-trigger">
+      <span data-bind="i18n: 'Click this button to show the modal'"></span>
+    </button>
+    <div id="bifang-modal">
+        <div class="content">
+            This widget is instantiated by JavaScript in this phtml
+        </div>
+    </div>
+    <script>
+      require([
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+      ], function($){
+        $('#bifang-modal').modal({
+          "type": "popup",
+          "title": "Magento Modal widget",
+          "trigger": "[data-trigger=modal-trigger]",
+          "responsive": true
+        });
+      });
+    </script>
+  </div>
+
+</div>
+
+<script>
+    require(['BiFang_TutorialFrontendWidget/js/bootstrap/bootstrap.bundle']);
+</script>

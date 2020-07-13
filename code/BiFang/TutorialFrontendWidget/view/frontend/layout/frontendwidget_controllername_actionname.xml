@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="BiFang Magento2 Tutorial - Frontend Widget"/>
+    <meta name="keywords" content="BiFang Magento2 Tutorial Frontend Widget"/>
+    <meta name="author" content="Yang"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BiFang Magento2 Tutorial - Frontend Widget</title>
+
+    <css src="BiFang_TutorialFrontendWidget::css/bootstrap.css" media="all"/>
+    <css src="BiFang_TutorialFrontendWidget::css/custom.css" media="all"/>
+
+  </head>
+  <referenceContainer name="content">
+    <block
+      template="mainTemplateName.phtml"
+      class="BiFang\TutorialFrontendWidget\Block\BlockName"
+      name="frontendwidget.main"/>
+  </referenceContainer>
+  <referenceContainer name="div.sidebar.main">
+    <block
+      template="sidebarTemplateName.phtml"
+      class="BiFang\TutorialFrontendWidget\Block\BlockName"
+      name="frontendwidget.sidebar"/>
+  </referenceContainer>
+  <referenceContainer name="div.sidebar.additional" remove="true"/>
+</page>

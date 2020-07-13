@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="BiFang Magento2 Tutorial - Frontend JavaScript"/>
+    <meta name="keywords" content="BiFang Magento2 Tutorial Frontend JavaScript"/>
+    <meta name="author" content="Yang"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BiFang Magento2 Tutorial - Frontend JavaScript</title>
+
+    <css src="BiFang_TutorialFrontendJavaScript::css/bootstrap.css" media="all"/>
+    <css src="BiFang_TutorialFrontendJavaScript::css/custom.css" media="all"/>
+
+  </head>
+  <referenceContainer name="content">
+    <block template="templateName.phtml"
+      class="BiFang\TutorialFrontendJavaScript\Block\BlockName"
+      name="frontendjavascript">
+      <arguments>
+          <argument name="jsLayout" xsi:type="array">
+              <item name="components" xsi:type="array">
+                  <item name="xml-defined-compo1-scope" xsi:type="array">
+                      <item name="component" xsi:type="string">xmlCompo1</item>
+                      <item name="config" xsi:type="array">
+                        <item name="template" xsi:type="string">BiFang_TutorialFrontendJavaScript/component-template</item>
+                      </item>
+                  </item>
+                  <item name="xml-defined-compo2-scope" xsi:type="array">
+                      <item name="component" xsi:type="string">xmlCompo2</item>
+                      <item name="children" xsi:type="array">
+                        <item name="xml-defined-compo2-child1" xsi:type="array">
+                          <item name="component" xsi:type="string">BiFang_TutorialFrontendJavaScript/js/children/xml-defined-compo2-child1</item>
+                          <item name="displayArea" xsi:type="string">display-area-name</item>
+                          <item name="config" xsi:type="array">
+                              <item name="template" xsi:type="string">BiFang_TutorialFrontendJavaScript/children/child-template</item>
+                          </item>
+                        </item>
+                      </item>
+                  </item>
+                  <item name="xml-defined-compo3-scope" xsi:type="array">
+                      <item name="component" xsi:type="string">xmlCompo3</item>
+                      <item name="config" xsi:type="helper" helper="BiFang\TutorialFrontendJavaScript\Helper\Data::getConfigData"/>
+                      <item name="children" xsi:type="array">
+                        <item name="xml-defined-compo3-child1" xsi:type="array">
+                          <item name="component" xsi:type="string">BiFang_TutorialFrontendJavaScript/js/children/xml-defined-compo3-child1</item>
+                          <item name="config" xsi:type="array">
+                              <item name="template" xsi:type="helper" helper="BiFang\TutorialFrontendJavaScript\Helper\Data::getLayoutTemplate"/>
+                          </item>
+                        </item>
+                        <item name="xml-defined-compo3-child2" xsi:type="array">
+                          <item name="component" xsi:type="string">BiFang_TutorialFrontendJavaScript/js/children/xml-defined-compo3-child2</item>
+                          <item name="config" xsi:type="array">
+                              <item name="componentDisabled" xsi:type="helper" helper="BiFang\TutorialFrontendJavaScript\Helper\Data::isDisableComponent"/>
+                              <item name="template" xsi:type="string">BiFang_TutorialFrontendJavaScript/children/child-template</item>
+                          </item>
+                        </item>
+                      </item>
+                  </item>
+              </item>
+          </argument>
+      </arguments>
+    </block>
+  </referenceContainer>
+
+</page>

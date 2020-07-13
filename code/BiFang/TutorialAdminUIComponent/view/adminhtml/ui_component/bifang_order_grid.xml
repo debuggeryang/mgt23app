@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+          <!-- This provider refers to the dataSource component used for listing UiComponent, "bifang_order_grid" is the layout name and "bifang_order_grid_data_source" is the dataSource component name -->
+            <item name="provider" xsi:type="string">bifang_order_grid.bifang_order_grid_data_source</item>
+        </item>
+    </argument>
+    <!-- settings tag is introduced to replace argument tage since 2.2, to make it more readable.
+      I am not sure if all argument attributes can be replaced by settings tags. You can read xsd to find out what tags are available in settings. -->
+    <settings>
+        <spinner>bifang_order_columns</spinner>
+        <!-- This deps tage sets the dependency on component initialization. After it is setup, in the component 'bifang_order_grid.bifang_order_grid', you can find its deps value.
+        What it does here is We tell Magento bifang_order_grid.bifang_order_grid should be loaded after bifang_order_grid_data_soure.-->
+        <deps>
+            <dep>bifang_order_grid.bifang_order_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="bifang_order_grid_data_source_comopnent" component="Magento_Ui/js/grid/provider">
+        <settings>
+          <!-- According to dataSource.xsd, this updateUrl is for Query for data refresh (i.e. applying filters in Listing component). -->
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <!-- The dataProvider name refers to the collection name for reporting. (dataProvider.xsd)
+        Also it is the dataSource component name, and you can get it by "reg.get('.bifang_order_grid.bifang_order_grid.bifang_order_grid_data_source')"
+        Now look back at the dataSource tag, where I meant to give it a different name value, and that name attribute is actually meaningless? -->
+        <dataProvider class="UIComponentDataProvider" name="bifang_order_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>main_table.entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="bifang_order_columns">
+        <settings>
+          <!-- all column in this conlumns component will apply these default settings
+          The param fieldAction refers to the action when we click on the filed. The following settings mean whenever you click on any field(whole row), we will open a link to view the object. -->
+            <!-- <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">bifang_order_grid.bifang_order_grid.bifang_order_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">view</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults> -->
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order ID</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Magento\Sales\Ui\Component\Listing\Column\Status\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Sales\Ui\Component\Listing\Column\ViewAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrlPath" xsi:type="string">sales/order/view</item>
+                    <item name="urlEntityParamName" xsi:type="string">order_id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+
+    </columns>
+</listing>

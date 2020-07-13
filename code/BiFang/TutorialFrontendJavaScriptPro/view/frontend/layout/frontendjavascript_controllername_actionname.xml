@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+<!-- If we use the following way to replace component js,
+you will find the JavaScript component is replaced,
+but new data in defaults won't overwrite the old.
+I guess it is relevant to the order of renderring steps,
+and when the js is being replaced, "Magento_Ui/js/core/app" has
+already processed JavaScript defaults? -->
+
+  <referenceBlock name="frontendjavascript">
+    <arguments>
+        <argument name="jsLayout" xsi:type="array">
+            <item name="components" xsi:type="array">
+              <item name="xml-defined-compo3-scope" xsi:type="array">
+                <item name="component" xsi:type="string">xmlCompo3New</item>
+              </item>
+            </item>
+        </argument>
+    </arguments>
+  </referenceBlock>
+  <referenceContainer name="content">
+    <block
+      template="BiFang_TutorialFrontendJavaScriptPro::templateNamePro.phtml"
+      class="BiFang\TutorialFrontendJavaScript\Block\BlockName"
+      name="frontendjavascriptpro"
+      after="frontendjavascript"/>
+  </referenceContainer>
+
+</page>

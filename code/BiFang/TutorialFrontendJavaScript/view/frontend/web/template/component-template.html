@@ -1,0 +1,15 @@
+<td data-bind="text: jsSource"></td>
+<td data-bind="text: templateSource"></td>
+<td data-bind="text: dataSource"></td>
+<td>
+  <!-- ko foreach: getRegion('display-area-name') -->
+    <!-- ko template: getTemplate() -->
+    <!-- /ko -->
+  <!-- /ko -->
+  <!-- ko foreach: elems() -->
+    <!-- ko template: getTemplate() -->
+    <!-- /ko -->
+  <!-- /ko -->
+</td>
+<td data-bind="text: extended"></td>
+<td data-bind="text: $data.extendMessage ? extendMessage : ''"></td>

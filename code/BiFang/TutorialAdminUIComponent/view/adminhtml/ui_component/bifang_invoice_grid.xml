@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+          <item name="provider" xsi:type="string">bifang_invoice_grid.bifang_invoice_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>bifang_invoice_columns</spinner>
+        <deps>
+            <dep>bifang_invoice_grid.bifang_invoice_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="bifang_invoice_grid_data_source_comopnent" component="Magento_Ui/js/grid/provider">
+        <settings>
+          <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="UIComponentDataProvider" name="bifang_invoice_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>main_table.entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="bifang_invoice_columns">
+        <column name="increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Invoice ID</label>
+            </settings>
+        </column>
+        <column name="order_increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order ID</label>
+            </settings>
+        </column>
+        <column name="state" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Magento\Sales\Ui\Component\Listing\Column\Invoice\State\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Sales\Ui\Component\Listing\Column\ViewAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrlPath" xsi:type="string">sales/invoice/view</item>
+                    <item name="urlEntityParamName" xsi:type="string">invoice_id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+
+    </columns>
+</listing>

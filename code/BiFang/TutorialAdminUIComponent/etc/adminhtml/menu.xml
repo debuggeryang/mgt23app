@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <!-- IMPORTANT!: Here the module value has to be the original module of the parent menu -->
+    <menu>
+      <add id="BiFang_TutorialAdmin::uicomponent"
+        resource="BiFang_TutorialAdmin::uicomponent"
+        title="Admin UI Component"
+        action="adminuicomponent/controllername/actionname"
+
+        module="BiFang_TutorialAdminBasic"
+        
+        sortOrder="12"
+        parent="BiFang_TutorialAdmin::top"
+        dependsOnModule="BiFang_TutorialAdminBasic"/>
+    </menu>
+</config>

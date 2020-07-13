@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+<!-- Here we setup the admin menu for this extension.
+The resource link to the corresponding resource setup in acl.xml
+The id and resourece values are always the same.
+Don't ask why because I don't know why, but I know if you change the id, the menu won't load.
+The action refers to an action(page) in controller.
+If a menu element has a child, its action won't work. -->
+    <add id="BiFang_TutorialAdmin::top"
+      resource="BiFang_TutorialAdmin::top"
+      title="BiFang Tutorial"
+      module="BiFang_TutorialAdminBasic"
+      sortOrder="1"/>
+    <add id="BiFang_TutorialAdmin::basic"
+      resource="BiFang_TutorialAdmin::basic"
+      title="Admin Basic Page"
+      action="adminbasic/controllername/actionname"
+      module="BiFang_TutorialAdminBasic"
+      sortOrder="11"
+      parent="BiFang_TutorialAdmin::top"
+      dependsOnModule="BiFang_TutorialAdminBasic"/>
+    </menu>
+</config>

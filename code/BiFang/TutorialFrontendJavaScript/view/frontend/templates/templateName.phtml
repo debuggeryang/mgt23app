@@ -1,0 +1,81 @@
+<div class="">
+  <h2>Here are examples of
+    <a target="_blank" href="https://devdocs.magento.com/guides/v2.3/javascript-dev-guide/javascript/js_overview.html">
+      JavaScript
+    </a>
+  </h2>
+  <table class="table table-striped table-bordered table-hover">
+    <tr class="thead-light">
+      <th class="text-center text-justify align-middle" scope="col">Define the component</th>
+      <th scope="col">Define its template</th>
+      <th scope="col">Get its data</th>
+      <th scope="col">Children components</th>
+      <th scope="col">Is extended</th>
+      <th scope="col">Extension message</th>
+    </tr>
+
+
+    <tr class="phtml-defined-compo" data-bind="scope: 'phtml-defined-compo-scope'">
+      <!-- ko template: getTemplate() -->
+      <!-- /ko -->
+    </tr>
+    <!-- The Magento_Ui/js/core/app RequireJS module is a module that instantiates KnockoutJS view models to use with the scope attribute -->
+
+    <script type="text/x-magento-init">
+      {
+          ".phtml-defined-compo": {
+            "Magento_Ui/js/core/app": {
+              "components": {
+                "phtml-defined-compo-scope": {
+                  "component": "phtmlCompo",
+                  "config": <?php echo $block->getBlockConfig();?>
+                }
+              }
+            }
+          }
+      }
+    </script>
+
+
+    <tr class="xml-defined-compo" data-bind="scope: 'xml-defined-compo1-scope'">
+      <!-- ko template: getTemplate() -->
+      <!-- /ko -->
+    </tr>
+    <tr class="xml-defined-compo" data-bind="scope: 'xml-defined-compo2-scope'">
+      <!-- ko template: getTemplate() -->
+      <!-- /ko -->
+    </tr>
+    <tr class="xml-defined-compo" data-bind="scope: 'xml-defined-compo3-scope'">
+      <!-- ko template: getTemplate() -->
+      <!-- /ko -->
+    </tr>
+    <script type="text/x-magento-init">
+      {
+          ".xml-defined-compo": {
+              "Magento_Ui/js/core/app": <?php echo $block->getJsLayout();?>
+          }
+      }
+    </script>
+
+
+
+  </table>
+  <ul>
+    <li>One big difference between the above components and <a href="http://www.yangmgt23.com/frontendbasic/controllername/actionname" target="_blank"> those basic components</a> is that above components are all instantiated through Magento_Ui/js/core/app.</li>
+    <li>The Magento_Ui/js/core/app RequireJS module is a module that instantiates KnockoutJS view models to use with the scope attribute. In other words, above components have corresponding view models and registered in uiRegistry, while those basic ones are not.</li>
+    <li>You can use the constructor function to generate any component object in developer tool console:
+      <ul>
+        <li>First, run <i>component = requirejs('componentName')</i> to get the component.</li>
+        <li>Second, run <i>componentObj = new component()</i> to get the object</li>
+      </ul>
+    </li>
+    <li>From the component object, you can find some preassigned data in js file, but they may not be the data you see in the table above.</li>
+    <li>To get the exact data you see above, you need to find their corresponding view model.</li>
+    <li>As we said, those view models are registered, so you can run <i>viewmodel = requirejs('uiRegistry').get('scopeName')</i> to get them.</li>
+  </ul>
+
+</div>
+
+<script>
+  require(['BiFang_TutorialFrontendViewModel/js/bootstrap/bootstrap.bundle']);
+</script>

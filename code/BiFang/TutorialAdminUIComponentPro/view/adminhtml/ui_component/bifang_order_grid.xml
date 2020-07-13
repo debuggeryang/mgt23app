@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+          <item name="provider" xsi:type="string">bifang_order_grid.bifang_order_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>bifang_order_columns</spinner>
+        <deps>
+            <dep>bifang_order_grid.bifang_order_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="bifang_order_grid_data_source_comopnent" component="Magento_Ui/js/grid/provider">
+        <settings>
+          <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="UIComponentDataProvider" name="bifang_order_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>main_table.entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="bifang_order_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order ID</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Magento\Sales\Ui\Component\Listing\Column\Status\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+        <column name="mage_template_show_name" component="BiFang_TutorialAdminUIComponentPro/js/grid/columns/column-show-name">
+          <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+              <!-- The following is an "offical" way to invoke an field action:
+              In column.js: Firstly it will call getFieldHandler.
+                            Secondly it will estimate if we have set up a fieldAction.
+                            Thrirdly if we have done as the following, it will bind this fieldAction and invoke it.
+              ${ $.$data.rowIndex }: It is the most confusing part here. ${ $.variable } is Magento "template literals".
+                            Why the variable "$data" has a dollar symbol is unclear to me,
+                            but I can tell the magic of declare $data seems to happen in the function applySingleAction,
+                            because that is the only line that you can find the "rowIndex" is declared,
+                            and to confirm this conclusion, you can change the param to ${ $.$data.column } and output it in applyAction.
+              However, this "offical" procedure does not suit us because we want to create a modal here to and render more data instead of just rowIndex.
+              Hence, we simply start to rewrite the the procedure from getFieldHander, because the whole record is passed into this function and is not passed further.
+               -->
+              <!-- <item name="fieldAction" xsi:type="array">
+                <item name="provider" xsi:type="string">bifang_order_grid.bifang_order_grid.bifang_order_columns.mage_template_show_name</item>
+                <item name="target" xsi:type="string">applyActionInOfficialProcedure</item>
+                <item name="params" xsi:type="array">
+                    <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                </item>
+              </item> -->
+            </item>
+          </argument>
+          <settings>
+            <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            <sortable>false</sortable>
+            <label translate="true">Name</label>
+          </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Sales\Ui\Component\Listing\Column\ViewAction">
+          <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+              <item name="viewUrlPath" xsi:type="string">sales/order/view</item>
+              <item name="urlEntityParamName" xsi:type="string">order_id</item>
+            </item>
+          </argument>
+          <settings>
+            <indexField>entity_id</indexField>
+          </settings>
+        </actionsColumn>
+
+    </columns>
+</listing>

@@ -1,0 +1,261 @@
+@_nav__indent-side: 15px;
+@_nav-background-color: @navigation__background;
+@_nav-border: @navigation__border;
+@_nav-level0-font-size: @navigation-level0-item__font-size;
+@_nav-level0-font-weight: @navigation-level0-item__font-weight;
+@_nav-level0-item-line-height: @navigation-level0-item__line-height;
+@_nav-level0-item-margin: @navigation-level0-item__margin;
+@_nav-level0-item-padding: @navigation-level0-item__padding;
+@_nav-level0-text-transform: @navigation-level0-item__text-transform;
+
+@_nav-level0-item-background-color: @navigation-level0-item__background;
+@_nav-level0-item-border: @navigation-level0-item__border;
+@_nav-level0-item-color: @navigation-level0-item__color;
+@_nav-level0-item-text-decoration: @navigation-level0-item__text-decoration;
+
+@_nav-level0-item-background-color-active: @navigation-level0-item__active__background;
+@_nav-level0-item__active__border-color: @navigation-level0-item__active__border-color;
+@_nav-level0-item__active__border-style: @navigation-level0-item__active__border-style;
+@_nav-level0-item__active__border-width: @navigation-level0-item__active__border-width;
+@_nav-level0-item-color-active: @navigation-level0-item__active__color;
+@_nav-level0-item-text-decoration-active: @navigation-level0-item__active__text-decoration;
+
+@_submenu-background-color: @submenu__background;
+@_submenu-border: @submenu__border;
+@_submenu-font-size: @submenu__font-size;
+@_submenu-font-weight: @submenu__font-weight;
+@_submenu-line-height: @submenu-item__line-height;
+@_submenu-item__padding-top: @submenu__padding-top;
+@_submenu-item__padding-right: @submenu__padding-right;
+@_submenu-item__padding-bottom: @submenu__padding-bottom;
+@_submenu-item__padding-left: @submenu__padding-left;
+
+@_submenu-item-background-color: @submenu-item__background;
+@_submenu-item-border: @submenu-item__border;
+@_submenu-item-color: @submenu-item__color;
+@_submenu-item-text-decoration: @submenu-item__text-decoration;
+
+@_submenu-item-background-color-active: @submenu-item__active__background;
+@_submenu-item__active__border: @submenu-item__active__border;
+@_submenu-item__active__border-color: @submenu-item__active__border-color;
+@_submenu-item__active__border-style: @submenu-item__active__border-style;
+@_submenu-item__active__border-width: @submenu-item__active__border-width;
+@_submenu-item-color-active: @submenu-item__active__color;
+@_submenu-item-text-decoration-active: @submenu-item__active__text-decoration;
+.bifang-menu.navigation {
+
+
+    padding: 0;
+
+    .lib-css(background, @_nav-background-color);
+    .lib-css(border, @_nav-border);
+    box-sizing: border-box;
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        .lib-css(padding-top, @_submenu-item__padding-top);
+        .lib-css(padding-right, @_submenu-item__padding-right);
+        .lib-css(padding-bottom, @_submenu-item__padding-bottom);
+        .lib-css(padding-left, @_submenu-item__padding-left);
+    }
+
+    a,
+    a:hover {
+        .lib-css(color, @_nav-level0-item-color);
+        .lib-css(text-decoration, @_nav-level0-item-text-decoration);
+    }
+
+    .level0 {
+      display: list-item;
+        .lib-css(border-top, @_nav-level0-item-border);
+        // .lib-font-size(@_nav-level0-font-size);
+        font-size: 1rem;
+
+        > .level-top {
+            .lib-css(background, @_nav-level0-item-background-color);
+            .lib-css(font-weight, @_nav-level0-font-weight);
+            // .lib-css(line-height, @_nav-level0-item-line-height);
+            line-height: 3rem;
+            // .lib-css(padding, @_nav-level0-item-padding);
+            .lib-css(text-transform, @_nav-level0-text-transform);
+            word-wrap: break-word;
+            &:hover {
+                .lib-css(color, @navigation-level0-item__hover__color);
+            }
+        }
+
+        &.active {
+            .all-category {
+                .ui-state-focus {
+                    .lib-css(background, @_nav-level0-item-background-color-active);
+                    .lib-css(border-color, @_nav-level0-item__active__border-color);
+                    .lib-css(border-style, @_nav-level0-item__active__border-style);
+                    .lib-css(border-width, @_nav-level0-item__active__border-width);
+                    .lib-css(color, @_nav-level0-item-color-active);
+                    .lib-css(padding-left, @_nav__indent-side - @_submenu-item__active__border);
+                    .lib-css(text-decoration, @_nav-level0-item-text-decoration-active);
+                    display: inline-block;
+                }
+            }
+        }
+
+        > .level1 {
+            .lib-css(font-weight, @font-weight__semibold);
+        }
+
+        &.active,
+        &.has-active { // ToDo UI: remove "has_active" here, when mobile navigation default open state is implemented
+            > a:not(.ui-state-active) {
+                .lib-css(background, @_nav-level0-item-background-color-active);
+                .lib-css(border-color, @_nav-level0-item__active__border-color);
+                .lib-css(border-style, @_nav-level0-item__active__border-style);
+                .lib-css(border-width, @_nav-level0-item__active__border-width);
+                .lib-css(color, @_nav-level0-item-color-active);
+                .lib-css(text-decoration, @_nav-level0-item-text-decoration-active);
+
+                span:not(.ui-menu-icon) {
+                    .lib-css(margin-left, -@_submenu-item__active__border);
+                }
+            }
+        }
+    }
+
+    li.level0 {
+
+        &:last-child {
+            .lib-css(border-bottom, @_nav-level0-item-border);
+        }
+        .submenu .submenu {
+          left: auto !important;
+        }
+    }
+
+    .submenu {
+        background: unset !important;
+        border: unset !important;
+        box-shadow: unset !important;
+        min-width: unset !important;
+        z-index: auto !important;
+        margin-top: unset !important;
+
+        li.parent > a > .ui-menu-icon:after {
+          content: unset !important;
+        }
+        > li {
+            word-wrap: break-word;
+            > a {
+                &:hover {
+                    .lib-css(color, @navigation-level0-item__hover__color);
+                }
+            }
+        }
+
+        &:not(:first-child) {
+            .lib-css(background, @_submenu-background-color);
+            .lib-css(border, @_submenu-border);
+            .lib-css(font-size, @_submenu-font-size);
+            .lib-css(font-weight, @_submenu-font-weight);
+            .lib-css(line-height, @_submenu-line-height);
+            left: auto !important;
+            overflow-x: hidden;
+            padding: 0;
+            position: relative;
+            top: auto !important;
+            transition: left .3s ease-out;
+
+            > li {
+                > a {
+                    .lib-css(padding-left, @_nav__indent-side);
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            ul {
+                display: block;
+                .lib-css(padding-left, @_submenu-item__padding-left);
+
+                > li {
+                    margin: 0;
+
+                    a {
+                        .lib-css(background, @_submenu-item-background-color);
+                        .lib-css(border, @_submenu-item-border);
+                        .lib-css(color, @_submenu-item-color);
+                        .lib-css(text-decoration, @_submenu-item-text-decoration);
+                        display: block;
+                        line-height: normal;
+                        &:hover {
+                            .lib-css(color, @navigation-level0-item__hover__color);
+                        }
+                    }
+                }
+            }
+
+            &.expanded {
+                display: block !important;
+                padding-right: 0;
+                top: 0 !important;
+            }
+
+            .active {
+                > a {
+                    .lib-css(background, @_submenu-item-background-color-active);
+                    .lib-css(border-color, @_submenu-item__active__border-color);
+                    .lib-css(border-style, @_submenu-item__active__border-style);
+                    .lib-css(border-width, @_submenu-item__active__border-width);
+                    .lib-css(color, @_submenu-item-color-active);
+                    .lib-css(padding-left, @_nav__indent-side - @_submenu-item__active__border);
+                    .lib-css(text-decoration, @_submenu-item-text-decoration-active);
+                }
+            }
+
+            .level1 {
+                &.active {
+                    > a {
+                        .lib-css(padding-left, @_nav__indent-side - @_submenu-item__active__border);
+                    }
+                }
+            }
+        }
+    }
+    .parent {
+        .level-top {
+            position: relative;
+            .ui-menu-icon:after{
+              content:unset !important;
+            }
+            .lib-icon-font(
+            @_icon-font-content: @icon-down,
+            @_icon-font-size: 42px,
+            @_icon-font-position: after,
+            @_icon-font-display: block
+            );
+
+            &:after {
+                position: absolute;
+                .lib-font-size(16) !important;
+                right: 7px;
+                top: 0px !important;
+            }
+
+            &.ui-state-active {
+                .lib-icon-font-symbol(
+                @_icon-font-content: @icon-up,
+                @_icon-font-position: after
+                );
+            }
+        }
+    }
+}

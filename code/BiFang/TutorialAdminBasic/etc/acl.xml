@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+<!-- acl.xml provide the config for admin resource accessibilities.
+You can setup a user role's accessibilities in System > Permissions > User Roles.
+Magento_Backend::admin refers to the root level.
+BiFang_TutorialAdmin::top refers to the root level for this extension.
+The title value is what you can read in the resource tree.
+You can find a _isAllowed() function in Controller ActionName,
+and the corresponding accessibility id (BiFang_TutorialAdmin::basic) is setup for that action. -->
+            <resource id="Magento_Backend::admin">
+                <resource
+                  id="BiFang_TutorialAdmin::top"
+                  title="Bifang Tutorial Admin">
+                    <resource
+                      id="BiFang_TutorialAdmin::basic"
+                      title="Bifang Tutorial Admin Basic"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

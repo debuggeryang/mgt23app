@@ -1,0 +1,78 @@
+<h2>When you are binding variables, <a href="https://alanstorm.com/observables-uielement-objects-and-variable-tracking/" target="_blank">"tracks"</a> is the same as ko.observable()</h2>
+<p>The following input fields are tracked in different ways. You can revise them in "Fields" column and see the change in the "Values" column</p>
+<table class="compo-pro table table-striped table-bordered table-hover" data-bind="scope: 'compo-pro-scope'">
+  <thead>
+    <tr class="thead-light">
+      <th class="text-center text-justify align-middle" style="width:50%" scope="col">Fields</th>
+      <th scope="col">Values</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <input type="text" name="input-field-no-observe-no-track" data-bind="textInput: inputValueNoObserveNoTrack">
+      </td>
+      <td>
+        <span data-bind="text: inputValueNoObserveNoTrack"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="input-field-is-observe-no-track" data-bind="textInput: inputValueIsObserveNoTrack">
+      </td>
+      <td>
+        <span data-bind="text: inputValueIsObserveNoTrack"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="input-field-no-observe-is-track" data-bind="textInput: inputValueNoObserveIsTrack">
+      </td>
+      <td>
+        <span data-bind="text: inputValueNoObserveIsTrack"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="input-field-object-is-track" data-bind="textInput: inputObject.value">
+      </td>
+      <td>
+        <span data-bind="text: inputObject.value"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="input-field-another-object-is-track" data-bind="textInput: anotherInputObject.value">
+      </td>
+      <td>
+        <span data-bind="text: anotherInputObject.value"></span>
+      </td>
+    </tr>
+  </tbody>
+
+
+  <tbody data-bind="foreach: inputValueArray">
+    <tr>
+      <td>
+        <input type="text" data-bind="textInput: inputValue">
+      </td>
+      <td>
+        <span data-bind="text: inputValue"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script type="text/x-magento-init">
+  {
+      ".compo-pro": {
+          "Magento_Ui/js/core/app": {
+            "components": {
+              "compo-pro-scope": {
+                "component": "BiFang_TutorialFrontendJavaScriptPro/js/compo-pro"
+              }
+            }
+          }
+      }
+  }
+</script>

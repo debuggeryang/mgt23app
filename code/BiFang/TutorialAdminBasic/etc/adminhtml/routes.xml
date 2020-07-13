@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="adminbasic" frontName="adminbasic">
+<!-- The adminhtml uri is composed of
+  <backend frontname (set up in env.php)>,
+  <frontName (see above line)>,
+  <ControllerName>,
+  <ActionName>
+For its url, they are sequentially link up by "/"
+For its layout xml file name, they are linked up by "_"
+Hence, in this case, the url is admin/adminbasic/controllername/actionname -->
+            <module name="BiFang_TutorialAdminBasic"/>
+        </route>
+    </router>
+</config>
