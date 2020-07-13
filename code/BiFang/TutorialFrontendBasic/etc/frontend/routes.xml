@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="frontendbasic" frontName="frontendbasic">
+<!-- The frontend uri is composed of <frontName (see above line)>, <ControllerName>, <ActionName> -->
+<!-- For its url, they are sequentially link up by "/" -->
+<!-- For its layout xml file name, they are linked up by "_" -->
+<!-- Hence, in this case, the url is frontendbasic/controllername/actionname -->
+<!-- Accordingly, the layout xml file name is frontendbasic_controllername_actionname.xml -->
+            <module name="BiFang_TutorialFrontendBasic"/>
+        </route>
+    </router>
+</config>

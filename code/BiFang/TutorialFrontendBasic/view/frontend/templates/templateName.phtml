@@ -1,0 +1,27 @@
+<h1>BiFang Magento2 Tutorial - Frontend Basic Template</h1>
+
+<div class="compo1">
+  <button type="button" name="button-compo1" onclick="showCompo1Message()"></button>
+</div>
+<script type="text/x-magento-init">
+  {
+    ".compo1": {
+      "BiFang_TutorialFrontendBasic/js/js-compo1": {
+        "buttonText": "JS Component Example 1. Click to read the detail",
+        "componentDefinedIn": "x-magento-init script tag"
+      }
+    }
+  }
+</script>
+
+<!-- If you have slash in your tags attribute value, you have to use double quotes to include them -->
+<div data-bind='
+  mageInit: {
+    "BiFang_TutorialFrontendBasic/js/js-compo2": {
+      "buttonText": "JS Component Example 2. Click to read the detail",
+      "componentDefinedIn": "data-bind attribute with mageInit binding"
+    }
+  }
+  '>
+  <button type="button" name="button-compo2" onclick="showCompo2Message()"></button>
+</div>
